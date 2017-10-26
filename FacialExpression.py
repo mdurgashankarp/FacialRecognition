@@ -40,7 +40,6 @@
     count = 0
     for i in train_ind:
         X_train[count] = np.reshape(np.array([int(s)
-            1
             for s in data['pixels'][i].split(' ')
         ]), (48, 48))
     y_train[count] = np.float(data['emotion'][i])
@@ -71,7 +70,6 @@
     X_train_pca = pca.transform(X_train)
     X_test_pca = pca.transform(X_test)
     print("done in %0.3fs" % (time() - t0))############################################################################### GridsearchforbestparametersoftheSVMclassificationmodel
-    2
     print("Fitting theclassifiertothetrainingset")
     t0 = time()
     param_grid = {
@@ -111,7 +109,6 @@
     from keras.layers.convolutional
     import Convolution2D as Conv2D,
     ZeroPadding2D as Zero2D
-    3
     from keras.layers.core
     import Flatten, Activation, Dense, Dropout
     from keras.layers.normalization
@@ -150,7 +147,7 @@
         b_regularizer = l2(weight_decay)))# model.add(Activation('relu'))## print(model.output_shape)
     model.add(Dense(7, activation = 'softmax', W_regularizer = l2(weight_decay),
         b_regularizer = l2(weight_decay)))# print(model.output_shape)
-    4# 3 Conv - 1 FC
+    # 3 Conv - 1 FC
     model = Sequential()
     model.add(keras.layers.convolutional.Cropping2D(cropping = ((2, 2), (2, 2)),
         input_shape = (1, 48, 48)))
@@ -182,7 +179,6 @@
         b_regularizer = l2(weight_decay)))# model.add(Activation('relu'))## print(model.output_shape)
     model.add(Dense(7, activation = 'softmax', W_regularizer = l2(weight_decay),
         b_regularizer = l2(weight_decay)))# print(model.output_shape)# 3 Conv - 2 FC
-    5
     model = Sequential()
     model.add(keras.layers.convolutional.Cropping2D(cropping = ((2, 2), (2, 2)),
         input_shape = (1, 48, 48)))
@@ -219,7 +215,7 @@
         b_regularizer = l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(Dropout(0.2))
-    6# model.add(Dense(512, bias = 0.1, W_regularizer = l2(weight_decay),
+    # model.add(Dense(512, bias = 0.1, W_regularizer = l2(weight_decay),
         b_regularizer = l2(weight_decay)))# model.add(Activation('relu'))## print(model.output_shape)
     model.add(Dense(7, activation = 'softmax', W_regularizer = l2(weight_decay),
         b_regularizer = l2(weight_decay)))# print(model.output_shape)# 4 Conv - 1 FC
@@ -251,7 +247,6 @@
         gamma_regularizer = l2(weight_decay),
         beta_regularizer = l2(weight_decay)))
     model.add(Activation('relu'))# print(model.output_shape)
-    7
     model.add(MaxPooling2D((3, 3), strides = (2, 2)))
     model.add(Dropout(0.25))
     model.add(Flatten())
@@ -287,7 +282,6 @@
     count += 1
     nb_classes = len(np.unique(y_train))# convertclassvectorstobinaryclassmatrices
     Y_train = np_utils.to_categorical(y_train, nb_classes)
-    8
     Y_test = np_utils.to_categorical(y_test, nb_classes)
     X_train = X_train.astype('float32')
     X_test = X_test.astype('float32')
@@ -322,7 +316,7 @@
         nesterov = True)
     model.compile(loss = 'categorical_crossentropy', optimizer = sgd,
         metrics = ['accuracy'])# np.random.seed(seed)
-    9# hist = model.fit(X_train, Y_train, validation_data = (X_test[: 3589], #Y_test[: 3589]), batch_size = batch_size, nb_epoch = epochs, verbose = 1, #callbacks = [change_lr])
+    # hist = model.fit(X_train, Y_train, validation_data = (X_test[: 3589], #Y_test[: 3589]), batch_size = batch_size, nb_epoch = epochs, verbose = 1, #callbacks = [change_lr])
     datagen = ImageDataGenerator(zoom_range = 0.2, horizontal_flip = True)# randomlyflipimages# Computequantitiesrequiredforfeature - wisenormalization#(std, mean, andprincipalcomponentsifZCAwhiteningisapplied).
     datagen.fit(X_train)# np.random.seed(seed)# Fitthemodelonthebatchesgeneratedbydatagen.flow().
     np.random.seed(seed)
@@ -342,4 +336,3 @@
     np.save("face_emot_acc.npy", hist.history['acc'])
     np.save("face_emot_val_loss.npy", hist.history['val_loss'])
     np.save("face_emot_val_acc.npy", hist.history['val_acc'])
-    10
