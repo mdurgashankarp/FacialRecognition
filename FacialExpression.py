@@ -1,5 +1,4 @@
-    #
-    Implementing SVMonFER2013dataset
+    #Implementing SVMonFER2013dataset
     import cv2
     import numpy as np
     import pandas as pd
@@ -55,7 +54,8 @@
     count += 1
     nb_classes = len(np.unique(y_train))
     X_train = X_train.astype('float32')
-    X_test = X_test.astype('float32')# === === === === === === === === === === === === === === === === === === === === === === === === === === ##Createaclassifier: aSupportVectorClassifier# === === === === === === === === === === === === === === === === === === === === === === === === === === ###############################################################################ComputeaPCA(eigenfaces) onthefacedataset(treatedasunlabeled# dataset): unsupervisedfeatureextraction / dimensionalityreduction
+    X_test = X_test.astype('float32')
+    # ##Createaclassifier: aSupportVectorClassifier######ComputeaPCA(eigenfaces) onthefacedataset(treatedasunlabeled# dataset): unsupervisedfeatureextraction / dimensionalityreduction
     X_train = np.reshape(X_train, (X_train.shape[0], -1))
     X_test = np.reshape(X_test, (X_test.shape[0], -1))
     n_components = 150
